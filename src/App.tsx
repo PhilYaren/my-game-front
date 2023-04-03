@@ -1,22 +1,23 @@
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/quotes */
-import GamePage from "./components/GamePage/GamePage";
+import GamePage from './components/GamePage/GamePage';
 
-import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import NavBar from "./components/NavBar/NavBar";
-import LogInForm from "./components/LogInForm/LogInForm";
-import SignUpForm from "./components/SignUpForm/SignUpForm";
-import LogInPage from "./components/LogInPage/LogInPage";
-import { useDispatch, useSelector } from "react-redux";
-import { getGames, getLoadedGames } from "./redux/game/games.selector";
-import { setGames } from "./redux/game/games.action";
-import { getUser } from "./redux/user/user.selector";
-import Protected from "./components/Protected/Protected";
-import HomePage from "./components/HomePage/HomePage";
-import "./App.css";
+import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import reactLogo from './assets/react.svg';
+import NavBar from './components/NavBar/NavBar';
+import LogInForm from './components/LogInForm/LogInForm';
+import SignUpForm from './components/SignUpForm/SignUpForm';
+import LogInPage from './components/LogInPage/LogInPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGames, getLoadedGames } from './redux/game/games.selector';
+import { setGames } from './redux/game/games.action';
+import { getUser } from './redux/user/user.selector';
+import { authUser } from './redux/user/user.action';
+import Protected from './components/Protected/Protected';
+import HomePage from './components/HomePage/HomePage';
+import './App.css';
 
 function App(): JSX.Element {
   const games = useSelector(getGames);
@@ -49,7 +50,7 @@ function App(): JSX.Element {
     }
     fetchData();
     return () => {
-      console.log("unmounting");
+      console.log('unmounting');
     };
   }, []);
   console.log(games);
