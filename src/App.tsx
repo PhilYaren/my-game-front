@@ -4,7 +4,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom'
 import reactLogo from './assets/react.svg';
-import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import LogInForm from './components/LogInForm/LogInForm';
 import SignUpForm from './components/SignUpForm/SignUpForm';
@@ -16,13 +15,13 @@ import Protected from './components/Protected/Protected'
 import HomePage from './components/HomePage/HomePage'
 import './App.css'
 
-function App(): JSX.Element {
+function App (): JSX.Element {
   const games = useSelector(getGames);
   const loadedGames = useSelector(getLoadedGames);
-// import { useDispatch, useSelector } from 'react-redux';
+  // import { useDispatch, useSelector } from 'react-redux';
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData () {
       const response = await fetch('http://localhost:3000/api/games');
       const data = await response.json();
       console.log(data);
@@ -37,7 +36,9 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
+      <NavBar />
       <Routes>
+        <Route index element={<LogInPage />} />
         <Route element={<Protected isLogged={true} />}>
           <Route path="/home" element={<HomePage />} />
         </Route>
