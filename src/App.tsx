@@ -32,6 +32,9 @@ function App(): JSX.Element {
           credentials: 'include',
         });
         const userData = await response.json();
+        if (response.status === 401) {
+          dispatch(authUser(null));
+        }
 
         if (response.ok) {
           dispatch(authUser(userData));
@@ -63,12 +66,15 @@ function App(): JSX.Element {
       <NavBar />
 
       <Routes>
-        <Route index element={<LogInPage />} />
+        <Route element={<Protected isLogged={false} redirectTo={'/home'} />}>
+          <Route index element={<LogInPage />} />
+        </Route>
         <Route element={<Protected isLogged={true} />}>
           <Route
             path="/home"
             element={<HomePage open={open} setOpen={setOpen} />}
           />
+
           <Route path="/game/:id" element={<GamePage />} />
         </Route>
       </Routes>

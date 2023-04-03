@@ -1,4 +1,4 @@
-import { GET_GAMES, SET_GAMES } from '../types';
+import { GET_GAMES, SET_GAMES, SET_QUSTION_ANSWER } from '../types';
 
 const initialState = {
   games: [],
@@ -17,7 +17,12 @@ const gamesReducer = (
         games: payload,
         loading: false,
       };
-
+    case SET_QUSTION_ANSWER: {
+      return {
+        ...state,
+        games: {},
+      };
+    }
     default:
       return state;
   }
