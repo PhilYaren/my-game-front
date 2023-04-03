@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './GameCard.module.css';
 
 function GameCard({ game }: any): JSX.Element {
   const navigate = useNavigate();

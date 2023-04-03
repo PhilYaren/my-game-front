@@ -1,0 +1,8 @@
+.game__section {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px auto 0 auto;
+  width: 95%;
+  max-width: 1200px;
+  padding: 0;
+}

@@ -75,7 +75,6 @@ function App(): JSX.Element {
             path="/home"
             element={<HomePage open={open} setOpen={setOpen} />}
           />
-
           <Route path="/game/:id" element={<GamePage />} />
         </Route>
       </Routes>
