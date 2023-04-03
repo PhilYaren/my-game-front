@@ -17,7 +17,7 @@ export default function GamePage(): JSX.Element {
       <span>Текущий счет: {score}</span>
       <GameField />
       <button type="button" onClick={handleClickOpen}>Завершить игру</button>
-      <AlertDialogSlide score={score} setOpen={setOpen}/>
+      <AlertDialogSlide score={score} setOpen={setOpen} open={open} />
     </div>
   );
 }

@@ -18,7 +18,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({score, setOpen}) {
+export default function AlertDialogSlide({score, setOpen, open}) {
   const navigate = useNavigate()
  
 
