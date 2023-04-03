@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGames, getLoadedGames } from './redux/game/games.selector';
 import { setGames } from './redux/game/games.action';
 import { getUser } from './redux/user/user.selector';
+import { authUser } from './redux/user/user.action';
 
 function App(): JSX.Element {
   const games = useSelector(getGames);
@@ -21,10 +22,23 @@ function App(): JSX.Element {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:3000/api/games');
-      const data = await response.json();
-      console.log(data);
-      dispatch(setGames(data));
+      try {
+        const response = await fetch('http://localhost:3000/api/auth/', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          dispatch(authUser(data));
+          const response = await fetch('http://localhost:3000/api/games');
+          const data = await response.json();
+          console.log(data);
+          dispatch(setGames(data));
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
     fetchData();
     return () => {
