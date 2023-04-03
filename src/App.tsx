@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/quotes */
+import GamePage from "./components/GamePage/GamePage";
+
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom'
 import reactLogo from './assets/react.svg';
@@ -39,12 +41,17 @@ function App (): JSX.Element {
   return (
     <div className="App">
       <NavBar />
+
+      <LogInPage />
+      <GamePage />
+
       <Routes>
         <Route index element={<LogInPage />} />
         <Route element={<Protected isLogged={true} />}>
           <Route path="/home" element={<HomePage />} />
         </Route>
       </Routes>
+
     </div>
   );
 }
