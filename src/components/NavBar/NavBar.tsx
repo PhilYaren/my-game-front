@@ -2,9 +2,28 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {authUser, logoutUser} from "../../redux/user/user.action";
 
 export default function NavBar (): JSX.Element {
-  const user = null;
+  const user = useSelector((state) => state.UserReducer.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    console.log('jjjr')
+
+    try {
+      const res = await fetch('http://localhost:3000/api/auth/logout', { credentials: 'include' });
+      if (res.ok) {
+        dispatch(logoutUser(null));
+      }
+    } catch(err) {
+      console.error(err);
+    }
+  }
+
+
   const isAuth = (): JSX.Element => (
     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
       <li className="nav-item">
@@ -23,7 +42,7 @@ export default function NavBar (): JSX.Element {
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <a type="button" className="nav-link" onClick={handleLogout}>
           Выйти
         </a>
       </li>
@@ -32,7 +51,7 @@ export default function NavBar (): JSX.Element {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="#" >
           Logo
         </a>
         <button
