@@ -68,6 +68,7 @@ function App(): JSX.Element {
       <Routes>
         <Route element={<Protected isLogged={false} redirectTo={'/home'} />}>
           <Route index element={<LogInPage />} />
+          <Route path="/signup" element={<LogInPage />} />
         </Route>
         <Route element={<Protected isLogged={true} />}>
           <Route
