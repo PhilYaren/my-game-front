@@ -23,15 +23,18 @@ function App(): JSX.Element {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:3000/api/auth/', {
+        const response = await fetch('http://localhost:3000/api/auth', {
           method: 'GET',
           credentials: 'include',
         });
-        const data = await response.json();
+        const userData = await response.json();
 
         if (response.ok) {
-          dispatch(authUser(data));
-          const response = await fetch('http://localhost:3000/api/games');
+          dispatch(authUser(userData));
+          const response = await fetch('http://localhost:3000/api/games', {
+            method: 'GET',
+            credentials: 'include',
+          });
           const data = await response.json();
           console.log(data);
           dispatch(setGames(data));
@@ -45,7 +48,6 @@ function App(): JSX.Element {
       console.log('unmounting');
     };
   }, []);
-  console.log(games);
 
   return (
     <div className="App">
