@@ -7,7 +7,7 @@ export default function CategoryRow({ name, questions }): JSX.Element {
     <tr>
       <th scope="row">{name}</th>
       {questions.map((question) => (
-        <SingleQuestionField key={question.id} score={question.score} />
+        <SingleQuestionField key={question.id} score={question.score} text={question.text} answer={question.answer} name={name} />
       ))}
     </tr>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
 import React from 'react';
 import CategoryRow from '../CategoryRow/CategoryRow';
 import { useSelector } from 'react-redux';
