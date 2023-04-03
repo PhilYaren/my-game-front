@@ -5,10 +5,7 @@ import GamePage from './components/GamePage/GamePage';
 
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import reactLogo from './assets/react.svg';
 import NavBar from './components/NavBar/NavBar';
-import LogInForm from './components/LogInForm/LogInForm';
-import SignUpForm from './components/SignUpForm/SignUpForm';
 import LogInPage from './components/LogInPage/LogInPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames, getLoadedGames } from './redux/game/games.selector';
@@ -22,8 +19,10 @@ import './App.css';
 function App(): JSX.Element {
   const games = useSelector(getGames);
   const user = useSelector(getUser);
+  const loadedUser = useSelector((state) => state.UserReducer.loaded);
   const loadedGames = useSelector(getLoadedGames);
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -41,7 +40,7 @@ function App(): JSX.Element {
             credentials: 'include',
           });
           const data = await response.json();
-          console.log(data);
+          console.log('response games', data);
           dispatch(setGames(data));
         }
       } catch (e) {
@@ -55,6 +54,10 @@ function App(): JSX.Element {
   }, []);
   console.log(games);
 
+  if (!loadedUser) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="App">
       <NavBar />
@@ -62,8 +65,11 @@ function App(): JSX.Element {
       <Routes>
         <Route index element={<LogInPage />} />
         <Route element={<Protected isLogged={true} />}>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/game" element={<GamePage />} />
+          <Route
+            path="/home"
+            element={<HomePage open={open} setOpen={setOpen} />}
+          />
+          <Route path="/game/:id" element={<GamePage />} />
         </Route>
       </Routes>
     </div>

@@ -1,64 +1,26 @@
-import React from "react";
-import CategoryRow from "../CategoryRow/CategoryRow";
+import React from 'react';
+import CategoryRow from '../CategoryRow/CategoryRow';
+import { useSelector } from 'react-redux';
+import { getGames } from '../../redux/game/games.selector';
+import { useParams } from 'react-router-dom';
 
 export default function GameField(): JSX.Element {
-  const categoriesArr: any = [
-    {
-      id: 1,
-      name: "dadad",
-      questions: [
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-      ],
-    },
-    {
-      id: 1,
-      name: "dadad",
-      questions: [
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-      ],
-    },
-    {
-      id: 1,
-      name: "dadad",
-      questions: [
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-        { id: 2, score: 200 },
-      ],
-    },
-  ];
+  const { id } = useParams();
+
+  const games = useSelector(getGames);
+  const game = games.find((game: any) => game.id === Number(id));
+  const categoriesArr = game?.categories;
   return (
     <table className="table table-bordered border-primary">
       <tbody>
-        {categoriesArr.map((category: any) => (
-          <CategoryRow
-            key={category.id}
-            name={category.name}
-            questions={category.questions}
-          />
-        ))}
+        {categoriesArr &&
+          categoriesArr.map((category: any) => (
+            <CategoryRow
+              key={category.id}
+              name={category.name}
+              questions={category.questions}
+            />
+          ))}
       </tbody>
     </table>
   );
