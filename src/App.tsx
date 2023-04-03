@@ -11,17 +11,20 @@ import LogInPage from './components/LogInPage/LogInPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames, getLoadedGames } from './redux/game/games.selector';
 import { setGames } from './redux/game/games.action';
+import { getUser } from './redux/user/user.selector';
 
 function App(): JSX.Element {
   const games = useSelector(getGames);
+  const user = useSelector(getUser);
   const loadedGames = useSelector(getLoadedGames);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('http://localhost:3000/api/games');
       const data = await response.json();
       console.log(data);
-      useDispatch(setGames(data));
+      dispatch(setGames(data));
     }
     fetchData();
     return () => {
