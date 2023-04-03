@@ -8,12 +8,14 @@ import NavBar from "./components/NavBar/NavBar";
 import LogInForm from "./components/LogInForm/LogInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import LogInPage from "./components/LogInPage/LogInPage";
+import GamePage from "./components/GamePage/GamePage";
 
 function App (): JSX.Element {
   return (
     <div className="App">
       <NavBar />
-      <LogInPage />
+      {/* <LogInPage /> */}
+      <GamePage />
     </div>
   )
 }
