@@ -152,24 +152,21 @@ export default function ModalWindowQuestion ({
         <DialogContent sx={{ backgroundColor: 'rgb(28,61,131)' }}>
           {isAnswered ? (
             <DialogContentText sx={{ color: 'rgb(235,215,56)' }}>
-              <span>
                 {isCorrect === 'correct'
-                  ? 'Верно!'
+                  ? <span style={{color: 'green'}}>Correct!</span>
                   : isCorrect === 'incorrect'
-                    ? 'Неверно'
+                    ? <span style={{color: 'red'}}>Faled!</span>
                     : null}
-              </span>
-              <br/>
               <span>{answer}</span>
             </DialogContentText>
           ) : (
-            <DialogContentText sx={{ color: 'rgb(235,215,56)' }}>
+            <DialogContentText>
               <progress id='timerProgressBar' max={100} value={count} />
-              <span >
+              <span>
                 {isCorrect === 'correct'
-                  ? 'Верно'
+                  ? <span style={{color: 'green'}}>Correct!</span>
                   : isCorrect === 'incorrect'
-                    ? 'Неверно'
+                    ? <span style={{color: 'red'}}>Faled!</span>
                     : null}
               </span>
               <br/>
