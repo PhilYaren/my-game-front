@@ -6,9 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
+import {useSelector} from "react-redux";
+import {getUser} from "../../redux/user/user.selector";
 
 export default function InfoModal({ open, setOpen }: any): JSX.Element {
   // const [open, setOpen] = useState(true);
+  const user = useSelector(state => state.UserReducer.user);
   const handleClose = (): any => {
     setOpen(false);
   };
@@ -21,12 +24,26 @@ export default function InfoModal({ open, setOpen }: any): JSX.Element {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Инструкция'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          Привет, {user.userName}!
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Инструкция Инструкция Инструкция Инструкция Инструкция Инструкция
-            Инструкция Инструкция Инструкция Инструкция Инструкция Инструкция
-            Инструкция
+            Чтобы начать игру:
+            <br/>
+            1. Выбери тему, которая будет интересна для тебя;
+            <br/>
+            2. Ты можешь начать новую игру или продолжить уже начатую;
+            <br/>
+            3. Выбери один вопрос из любой категории (в ячейке будет указана стоимость вопроса);
+            <br/>
+            4. У тебя будет 30 секунд на то, чтобы дать ответ. Напиши ео в поле и нажми на кнопку ответа;
+            <br/>
+            5. В случае неверного ответа, вопрос будет далее недоступен;
+            <br/>
+            6. Если ответ верный, то его стоимость будет записана в твою статистику;
+            <br/>
+            7. Со статистикой всех своих игр ты можешь ознакомиться на вкладке "Статистика".
           </DialogContentText>
         </DialogContent>
         <DialogActions>
