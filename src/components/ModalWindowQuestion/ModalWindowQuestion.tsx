@@ -115,9 +115,9 @@ export default function ModalWindowQuestion ({
               <progress id='timerProgressBar' max={100} value={count} />
               <span>
                 {isCorrect === 'correct'
-                  ? 'Correct!'
+                  ? <span style={{color: 'green'}}>Correct!</span>
                   : isCorrect === 'incorrect'
-                    ? 'Failed'
+                    ? <span style={{color: 'red'}}>Faled!</span>
                     : null}
               </span>
               <span>{text}</span>
