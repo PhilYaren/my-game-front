@@ -60,14 +60,14 @@ export default function AlertDialogSlide({ score, setOpen, open, gameId }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{'Игра завершена!'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
+        <DialogTitle sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>{'Игра завершена!'}</DialogTitle>
+        <DialogContent sx={{ backgroundColor: 'rgb(28,61,131)' }}>
+          <DialogContentText id="alert-dialog-slide-description" sx={{ color: 'rgb(235,215,56)' }}>
             Ваш счет: {score}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Перейти домой</Button>
+        <DialogActions sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>
+          <Button onClick={handleClose} sx={{ color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>Перейти домой</Button>
         </DialogActions>
       </Dialog>
     </div>

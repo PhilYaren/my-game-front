@@ -24,11 +24,11 @@ export default function InfoModal({ open, setOpen }: any): JSX.Element {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle id="alert-dialog-title" sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>
           Привет, {user.userName}!
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+        <DialogContent sx={{ backgroundColor: 'rgb(28,61,131)' }}>
+          <DialogContentText id="alert-dialog-description" sx={{ color: 'rgb(235,215,56)' }}>
             Чтобы начать игру:
             <br/>
             1. Выбери тему, которая будет интересна для тебя;
@@ -46,8 +46,8 @@ export default function InfoModal({ open, setOpen }: any): JSX.Element {
             7. Со статистикой всех своих игр ты можешь ознакомиться на вкладке "Статистика".
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Понятно</Button>
+        <DialogActions sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>
+          <Button onClick={handleClose} sx={{ color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>Понятно</Button>
         </DialogActions>
       </Dialog>
     </div>
