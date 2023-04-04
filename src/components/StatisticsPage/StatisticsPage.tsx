@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getUser } from "../../redux/user/user.selector";
 import SingleStatisticsComponent from "../SingleStatisticsComponent/SingleStatisticsComponent";
@@ -6,45 +6,46 @@ import './statistic.css'
 
 export default function StatisticsPage(): JSX.Element {
   const user = useSelector(getUser);
-  const userStatisticsArr = [
-    {
-      id: 1,
-      gameId: 3,
-      score: 5600,
-      userId: 2,
-      gameName: "kekekekeke",
-      createdAt: new Date(),
-    },
-    {
-      id: 1,
-      gameId: 3,
-      score: 5600,
-      userId: 2,
-      gameName: "kekekekeke",
-      createdAt: new Date(),
-    },
-    {
-      id: 1,
-      gameId: 3,
-      score: 5600,
-      userId: 2,
-      gameName: "kekekekeke",
-      createdAt: new Date(),
-    },
-  ];
+  const [userStatisticsObj, setUserStat] = useState({});
+  // let userStatisticsArr
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/statistics/user",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+        const userStat = await response.json();
+        console.log("dhdakaidiaidaidaidiadiadiadi", userStat);
+        setUserStat(userStat);
+        // userStatisticsArr = userStatisticsObj.statistics
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchData();
+  }, []);
+
+  console.log("object of stat in state", userStatisticsObj);
+  console.log("statisticsArr", userStatisticsObj.statistics);
   return (
     <div id="divStat">
       <div>
       <h2>{user.userName}</h2>
       <ul>
-        {userStatisticsArr.map((singleStat) => (
-          <SingleStatisticsComponent
-            key={singleStat.id}
-            name={singleStat.gameName}
-            score={singleStat.score}
-            date={singleStat.createdAt}
-          />
-        ))}
+        {Object.keys(userStatisticsObj).length &&
+          userStatisticsObj.statistics.map((singleStat) => (
+            <SingleStatisticsComponent
+              key={singleStat.id}
+              name={singleStat.game.name}
+              score={singleStat.score}
+              date={singleStat.createdAt}
+            />
+          ))}
       </ul>
       </div>
     </div>

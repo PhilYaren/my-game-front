@@ -41,7 +41,7 @@ export default function NavBar(): JSX.Element {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" href="#">
+        <Link className="nav-link" to="/leaderboard">
           Таблица лидеров
         </Link>
       </li>
