@@ -8,7 +8,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { setGames } from '../../redux/game/games.action';
+import { useDispatch } from 'react-redux';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -21,6 +22,7 @@ const Transition = React.forwardRef(function Transition(
 
 export default function AlertDialogSlide({ score, setOpen, open, gameId }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     async function generateStatistics() {
@@ -33,9 +35,15 @@ export default function AlertDialogSlide({ score, setOpen, open, gameId }) {
         },
         body: JSON.stringify({ gameId: id }),
       });
+
       if (response.ok) {
-        const data = await response.json();
-        console.log(data);
+        const response = await fetch('http://localhost:3000/api/games', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        const dataGames = await response.json();
+        console.log('response games', dataGames);
+        dispatch(setGames(dataGames));
         navigate('/home');
         setOpen(false);
       }
