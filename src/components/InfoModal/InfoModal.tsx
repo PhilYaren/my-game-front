@@ -21,16 +21,14 @@ export default function InfoModal({ open, setOpen }: any): JSX.Element {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Инструкция'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Инструкция Инструкция Инструкция Инструкция Инструкция Инструкция
-            Инструкция Инструкция Инструкция Инструкция Инструкция Инструкция
+        <DialogTitle id="alert-dialog-title" sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>{'Инструкция'}</DialogTitle>
+        <DialogContent sx={{ backgroundColor: 'rgb(28,61,131)' }}>
+          <DialogContentText id="alert-dialog-description" sx={{ color: 'rgb(235,215,56)' }}>
             Инструкция
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Понятно</Button>
+        <DialogActions sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>
+          <Button onClick={handleClose} sx={{ color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>Понятно</Button>
         </DialogActions>
       </Dialog>
     </div>

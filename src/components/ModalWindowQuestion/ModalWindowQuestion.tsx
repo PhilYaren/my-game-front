@@ -12,6 +12,52 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useLocation } from 'react-router-dom';
 import { setGames } from '../../redux/game/games.action';
 import { useDispatch } from 'react-redux';
+import { createTheme } from '@mui/material/styles';
+// import font from "../../../public/font/SI Font.ttf";
+import { CssBaseline, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'SI Font',
+      'Arial',
+      'sans-serif'
+    ].join(',')
+  },
+  palette: {
+    primary: {
+      light: 'rgb(235,215,56)',
+      main: 'rgb(235,215,56)',
+      dark: 'rgb(223, 148, 3)',
+      contrastText: 'white'
+    },
+    secondary: {
+      dark: 'rgb(28,61,131)',
+      main: 'rgb(28,61,131)',
+      light: 'rgb(40,79,166)',
+      contrastText: 'white'
+    },
+    text: {
+      primary: 'rgb(235,215,56)',
+      secondary: 'rgb(235,215,56)',
+      disabled: 'rgb(235,215,56)'
+    }
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: 'SI Font';
+          font-style: normal;
+          font-display: swap;
+          font-weight: 400;
+          src: url("../../../public/font/SI Font.ttf");
+        }
+      `
+    }
+  }
+
+});
 
 export default function ModalWindowQuestion ({
   setOpen,
@@ -97,31 +143,36 @@ export default function ModalWindowQuestion ({
   }, [timeToAnswer, count]);
 
   return (
-    <div>
-      <Dialog open={open}>
-        <DialogTitle>{name}</DialogTitle>
-        <DialogContent>
+    <ThemeProvider theme={theme}>
+      {/* <CssBaseline> */}
+
+    <div >
+      <Dialog open={open} >
+        <DialogTitle sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>{name}</DialogTitle>
+        <DialogContent sx={{ backgroundColor: 'rgb(28,61,131)' }}>
           {isAnswered ? (
-            <DialogContentText>
+            <DialogContentText sx={{ color: 'rgb(235,215,56)' }}>
               <span>
                 {isCorrect === 'correct'
-                  ? 'Correct!'
+                  ? 'Верно!'
                   : isCorrect === 'incorrect'
-                    ? 'Failed'
+                    ? 'Неверно'
                     : null}
               </span>
+              <br/>
               <span>{answer}</span>
             </DialogContentText>
           ) : (
-            <DialogContentText>
+            <DialogContentText sx={{ color: 'rgb(235,215,56)' }}>
               <progress id='timerProgressBar' max={100} value={count} />
-              <span>
+              <span >
                 {isCorrect === 'correct'
-                  ? 'Correct!'
+                  ? 'Верно'
                   : isCorrect === 'incorrect'
-                    ? 'Failed'
+                    ? 'Неверно'
                     : null}
               </span>
+              <br/>
               <span>{text}</span>
             </DialogContentText>
           )}
@@ -132,21 +183,24 @@ export default function ModalWindowQuestion ({
               margin="dense"
               id="name"
               name="answer"
-              label="Email Address"
+              label="Ваш ответ"
               type="email"
               fullWidth
               value={input}
               variant="standard"
               onChange={(e) => { setInput(e.target.value); }}
+              sx={{ color: 'text.primary' }}
             />
           )}
         </DialogContent>
         {!isAnswered && (
-          <DialogActions>
-            <Button onClick={handleClose}>Subscribe</Button>
+          <DialogActions sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>
+            <Button onClick={handleClose} sx={{ color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>Ответить</Button>
           </DialogActions>
         )}
       </Dialog>
     </div>
+    {/* </CssBaseline> */}
+    </ThemeProvider>
   );
 }
