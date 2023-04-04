@@ -4,6 +4,7 @@ import CategoryRow from '../CategoryRow/CategoryRow';
 import { useSelector } from 'react-redux';
 import { getGames } from '../../redux/game/games.selector';
 import { useNavigate, useParams } from 'react-router-dom';
+import './table.css'
 
 export default function GameField({ setScore }): JSX.Element {
   const { id } = useParams();
@@ -21,8 +22,9 @@ export default function GameField({ setScore }): JSX.Element {
   }
   const categoriesArr = game?.categories;
   return (
-    <table className="table table-bordered border-primary">
-      <tbody>
+    <div id="divTableBorder">
+      <table className="table table-bordered border-primary" id="tableSi">
+        <tbody>
         {categoriesArr &&
           categoriesArr.map((category: any) => (
             <CategoryRow
@@ -32,7 +34,9 @@ export default function GameField({ setScore }): JSX.Element {
               setScore={setScore}
             />
           ))}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
+
   );
 }

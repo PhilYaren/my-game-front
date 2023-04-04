@@ -1,0 +1,45 @@
+@font-face {
+    src: url("../../../public/font/SI Font.ttf");
+    font-family: SI;
+}
+
+body {
+    background-image: url("../../../public/img/555.jpg");
+}
+
+#navbar {
+    --bs-navbar-color: rgb(235,215,56);
+    --bs-navbar-hover-color: rgb(223,148,3);
+    --bs-navbar-disabled-color: rgb(223,148,3);
+    --bs-navbar-active-color: rgb(223,148,3);
+    font-family: SI;
+    text-shadow: 1px 1px 0 #000;
+    font-size: inherit;
+    height: 60px;
+}
+
+.bg-body-tertiary {
+    background-color: rgb(28,61,131) !important;
+}
+
+.navbar-brand img{
+    height: 50px;
+}
+
+.navbar-nav {
+    flex-direction: column;
+}
+
+.navbar-nav li {
+    background-color: rgb(28,61,131);
+    width: 200px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: row;
+        width: auto;
+    }
+}

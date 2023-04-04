@@ -5,6 +5,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authUser, logoutUser } from '../../redux/user/user.action';
 import { Link, useNavigate } from 'react-router-dom';
+import './navbar.css'
 
 export default function NavBar(): JSX.Element {
   const user = useSelector((state) => state.UserReducer.user);
@@ -52,11 +53,11 @@ export default function NavBar(): JSX.Element {
     </ul>
   );
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
       <div className="container-fluid">
-      <Link className="nav-link active" aria-current="page" to="/home">
-          LOGO
-        </Link>
+        <a className="navbar-brand" href="#">
+          <img src="../../../public/img/svoay_igra-PhotoRoom.png-PhotoRoom.png" alt=""/>
+        </a>
         <button
           className="navbar-toggler"
           type="button"

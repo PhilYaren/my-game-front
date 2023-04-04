@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import ModalWindowQuestion from '../ModalWindowQuestion/ModalWindowQuestion';
+import React, { useState } from "react";
+import ModalWindowQuestion from "../ModalWindowQuestion/ModalWindowQuestion";
+import './table.css'
 
 export default function SingleQuestionField({
   score,
@@ -19,7 +20,7 @@ export default function SingleQuestionField({
   };
 
   return (
-    <td>
+    <td id="tableTd">
       {!isAnswered.length ? (
         <>
           <div onClick={handleClickOpen}>{score}</div>
