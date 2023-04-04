@@ -18,30 +18,26 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
   typography: {
-    fontFamily: [
-      'SI Font',
-      'Arial',
-      'sans-serif'
-    ].join(',')
+    fontFamily: ['SI Font', 'Arial', 'sans-serif'].join(','),
   },
   palette: {
     primary: {
       light: 'rgb(235,215,56)',
       main: 'rgb(235,215,56)',
       dark: 'rgb(223, 148, 3)',
-      contrastText: 'white'
+      contrastText: 'white',
     },
     secondary: {
       dark: 'rgb(28,61,131)',
       main: 'rgb(28,61,131)',
       light: 'rgb(40,79,166)',
-      contrastText: 'white'
+      contrastText: 'white',
     },
     text: {
       primary: 'rgb(235,215,56)',
       secondary: 'rgb(235,215,56)',
-      disabled: 'rgb(235,215,56)'
-    }
+      disabled: 'rgb(235,215,56)',
+    },
   },
   components: {
     MuiCssBaseline: {
@@ -53,13 +49,12 @@ const theme = createTheme({
           font-weight: 400;
           src: url("../../../public/font/SI Font.ttf");
         }
-      `
-    }
-  }
-
+      `,
+    },
+  },
 });
 
-export default function ModalWindowQuestion ({
+export default function ModalWindowQuestion({
   setOpen,
   open,
   text,
@@ -69,8 +64,8 @@ export default function ModalWindowQuestion ({
   name,
   questionId,
   setScore,
-  score
-}) {
+  score,
+}: any) {
   const [input, setInput] = useState('');
   const [count, setCount] = useState(100);
   const [isAnswered, setAnswer] = useState(false);
@@ -78,7 +73,7 @@ export default function ModalWindowQuestion ({
   const gameId = useLocation().pathname.split('/').at(-1);
   const dispatch = useDispatch();
 
-  async function createrAnswer () {
+  async function createrAnswer() {
     try {
       const response = await fetch(
         `http://localhost:3000/api/answers/${questionId}`,
@@ -86,9 +81,9 @@ export default function ModalWindowQuestion ({
           method: 'POST',
           credentials: 'include',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ gameId: parseInt(gameId), answer: input })
+          body: JSON.stringify({ gameId: parseInt(gameId), answer: input }),
         }
       );
       const data = await response.json();
@@ -96,7 +91,7 @@ export default function ModalWindowQuestion ({
       if (response.ok) {
         const response = await fetch('http://localhost:3000/api/games', {
           method: 'GET',
-          credentials: 'include'
+          credentials: 'include',
         });
         const data = await response.json();
         console.log('response games', data);
@@ -146,58 +141,78 @@ export default function ModalWindowQuestion ({
     <ThemeProvider theme={theme}>
       {/* <CssBaseline> */}
 
-    <div >
-      <Dialog open={open} >
-        <DialogTitle sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>{name}</DialogTitle>
-        <DialogContent sx={{ backgroundColor: 'rgb(28,61,131)' }}>
-          {isAnswered ? (
-            <DialogContentText sx={{ color: 'rgb(235,215,56)' }}>
-                {isCorrect === 'correct'
-                  ? <span style={{color: 'green'}}>Correct!</span>
-                  : isCorrect === 'incorrect'
-                    ? <span style={{color: 'red'}}>Faled!</span>
-                    : null}
-              <span>{answer}</span>
-            </DialogContentText>
-          ) : (
-            <DialogContentText>
-              <progress id='timerProgressBar' max={100} value={count} />
-              <span>
-                {isCorrect === 'correct'
-                  ? <span style={{color: 'green'}}>Correct!</span>
-                  : isCorrect === 'incorrect'
-                    ? <span style={{color: 'red'}}>Faled!</span>
-                    : null}
-              </span>
-              <br/>
-              <span>{text}</span>
-            </DialogContentText>
-          )}
+      <div>
+        <Dialog open={open}>
+          <DialogTitle
+            sx={{
+              backgroundColor: 'rgb(28,61,131)',
+              color: 'rgb(223, 148, 3)',
+              fontFamily: 'SI',
+            }}
+          >
+            {name}
+          </DialogTitle>
+          <DialogContent sx={{ backgroundColor: 'rgb(28,61,131)' }}>
+            {isAnswered ? (
+              <DialogContentText sx={{ color: 'rgb(235,215,56)' }}>
+                {isCorrect === 'correct' ? (
+                  <span style={{ color: '#9eff00' }}>Верно</span>
+                ) : isCorrect === 'incorrect' ? (
+                  <span style={{ color: 'red' }}>Неверно</span>
+                ) : null}
+                <br />
+                <span>{answer}</span>
+              </DialogContentText>
+            ) : (
+              <DialogContentText sx={{ color: 'rgb(235,215,56)' }}>
+                <progress id="timerProgressBar" max={100} value={count} />
+                {isCorrect === 'correct' ? (
+                  <span style={{ color: '#9eff00' }}>Верно</span>
+                ) : isCorrect === 'incorrect' ? (
+                  <span style={{ color: 'red' }}>Неверно</span>
+                ) : null}
+                <br />
+                <span>{text}</span>
+              </DialogContentText>
+            )}
 
+            {!isAnswered && (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                name="answer"
+                label="Ваш ответ"
+                type="email"
+                fullWidth
+                value={input}
+                variant="standard"
+                onChange={(e) => {
+                  setInput(e.target.value);
+                }}
+                sx={{ color: 'text.primary' }}
+              />
+            )}
+          </DialogContent>
           {!isAnswered && (
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              name="answer"
-              label="Ваш ответ"
-              type="email"
-              fullWidth
-              value={input}
-              variant="standard"
-              onChange={(e) => { setInput(e.target.value); }}
-              sx={{ color: 'text.primary' }}
-            />
+            <DialogActions
+              sx={{
+                backgroundColor: 'rgb(28,61,131)',
+                color: 'rgb(223, 148, 3)',
+                fontFamily: 'SI',
+              }}
+            >
+              <Button
+                onClick={handleClose}
+                sx={{ color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}
+              >
+                Ответить
+              </Button>
+            </DialogActions>
           )}
-        </DialogContent>
-        {!isAnswered && (
-          <DialogActions sx={{ backgroundColor: 'rgb(28,61,131)', color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>
-            <Button onClick={handleClose} sx={{ color: 'rgb(223, 148, 3)', fontFamily: 'SI' }}>Ответить</Button>
-          </DialogActions>
-        )}
-      </Dialog>
-    </div>
-    {/* </CssBaseline> */}
+        </Dialog>
+      </div>
+      {/* </CssBaseline> */}
     </ThemeProvider>
   );
 }
