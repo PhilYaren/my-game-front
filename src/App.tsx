@@ -15,6 +15,7 @@ import { authUser } from './redux/user/user.action';
 import Protected from './components/Protected/Protected';
 import HomePage from './components/HomePage/HomePage';
 import './App.css';
+import StatisticsPage from './components/StatisticsPage/StatisticsPage';
 
 function App(): JSX.Element {
   const games = useSelector(getGames);
@@ -75,6 +76,7 @@ function App(): JSX.Element {
             path="/home"
             element={<HomePage open={open} setOpen={setOpen} />}
           />
+          <Route path="/statistics" element={<StatisticsPage />} />
           <Route path="/game/:id" element={<GamePage />} />
         </Route>
       </Routes>
