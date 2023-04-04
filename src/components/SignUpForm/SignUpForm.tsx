@@ -52,6 +52,7 @@ export default function SignUpForm(): JSX.Element {
           value={form.userName}
           id="exampleInputEmail1"
           onChange={handleInput}
+          required
         />
       </div>
       <div className="mb-3">
@@ -66,6 +67,7 @@ export default function SignUpForm(): JSX.Element {
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           onChange={handleInput}
+          required
         />
       </div>
       <div className="mb-3">
@@ -79,6 +81,7 @@ export default function SignUpForm(): JSX.Element {
           name="password"
           value={form.password}
           onChange={handleInput}
+          required
         />
       </div>
       <div id="signUpHelp" className="form-text">

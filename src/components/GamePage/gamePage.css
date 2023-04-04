@@ -29,6 +29,7 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 5px rgba(28,61,131, 0.5);
+    transition: 0.5s;
 }
 
 #divTable button:active {
