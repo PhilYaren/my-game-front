@@ -35,7 +35,7 @@ export default function NavBar(): JSX.Element {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" href="#">
+        <Link className="nav-link" to="/statistics">
           Статистика
         </Link>
       </li>
@@ -54,9 +54,9 @@ export default function NavBar(): JSX.Element {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Logo
-        </a>
+      <Link className="nav-link active" aria-current="page" to="/home">
+          LOGO
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
