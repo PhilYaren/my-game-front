@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ModalWindowQuestion from "../ModalWindowQuestion/ModalWindowQuestion";
+import './table.css'
 
 export default function SingleQuestionField({ score, text, answer, name }): JSX.Element {
   const [open, setOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function SingleQuestionField({ score, text, answer, name }): JSX.
   };
 
   return (
-  <td >
+  <td id="tableTd" >
     <div onClick={handleClickOpen}>
       {score}
     </div>

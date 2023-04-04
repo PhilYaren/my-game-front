@@ -1,0 +1,11 @@
+#rowTable {
+    color: rgb(235,215,56);
+    border-collapse: separate;
+    margin: 0;
+    border: 2px solid rgb(28,61,131);
+    background: linear-gradient(rgb(40,79,166), rgb(28,61,131));
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 0.09px;
+    text-shadow: 1px 1px 0 #000;
+}

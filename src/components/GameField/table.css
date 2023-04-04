@@ -1,0 +1,11 @@
+#tableSi {
+    color: rgb(235,215,56);
+    border-collapse: separate;
+    width: 800px;
+    margin: 0;
+}
+
+#divTableBorder {
+    border: 2px solid rgb(28,61,131);
+    background: linear-gradient(rgb(40,79,166), rgb(28,61,131));
+}

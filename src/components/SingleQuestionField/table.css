@@ -1,0 +1,13 @@
+#tableTd {
+    text-align: center;
+    box-shadow: inset 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+    border: none;
+    width: 100px;
+    height: 50px;
+    font-size: 25px;
+}
+
+#tableTd:hover {
+    background-color: rgb(28,61,131);
+    cursor: pointer;
+}
