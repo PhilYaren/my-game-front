@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { setGames } from '../../redux/game/games.action';
 import { useDispatch } from 'react-redux';
 
-export default function ModalWindowQuestion({
+export default function ModalWindowQuestion ({
   setOpen,
   open,
   text,
@@ -23,7 +23,7 @@ export default function ModalWindowQuestion({
   name,
   questionId,
   setScore,
-  score,
+  score
 }) {
   const [input, setInput] = useState('');
   const [count, setCount] = useState(8);
@@ -32,7 +32,7 @@ export default function ModalWindowQuestion({
   const gameId = useLocation().pathname.split('/').at(-1);
   const dispatch = useDispatch();
 
-  async function createrAnswer() {
+  async function createrAnswer () {
     try {
       const response = await fetch(
         `http://localhost:3000/api/answers/${questionId}`,
@@ -40,9 +40,9 @@ export default function ModalWindowQuestion({
           method: 'POST',
           credentials: 'include',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ gameId: parseInt(gameId), answer: input }),
+          body: JSON.stringify({ gameId: parseInt(gameId), answer: input })
         }
       );
       const data = await response.json();
@@ -50,7 +50,7 @@ export default function ModalWindowQuestion({
       if (response.ok) {
         const response = await fetch('http://localhost:3000/api/games', {
           method: 'GET',
-          credentials: 'include',
+          credentials: 'include'
         });
         const data = await response.json();
         console.log('response games', data);
@@ -69,32 +69,32 @@ export default function ModalWindowQuestion({
     } else {
       setCheck('incorrect');
     }
-    createrAnswer();
 
     setTime(false);
     setAnswer(true);
     setTimeout(() => {
       setOpen(false);
+      createrAnswer();
     }, 2000);
   };
 
   useEffect(() => {
-    let timer;
     let counter;
     if (timeToAnswer) {
-      timer = setTimeout(() => {
-        console.log('useEffect timer');
-        handleClose();
-      }, 8000);
       counter = setInterval(() => {
-        setCount((prev) => prev - 1);
+        if (count > 0) {
+          setCount((prev) => prev - 1);
+        } else {
+          clearTimeout(counter);
+          console.log('useEffect timer');
+          handleClose();
+        }
       }, 1000);
     }
     return () => {
-      clearTimeout(timer);
       clearInterval(counter);
     };
-  }, [timeToAnswer]);
+  }, [timeToAnswer, count]);
 
   return (
     <div>
@@ -107,8 +107,8 @@ export default function ModalWindowQuestion({
                 {isCorrect === 'correct'
                   ? 'Correct!'
                   : isCorrect === 'incorrect'
-                  ? 'Failed'
-                  : null}
+                    ? 'Failed'
+                    : null}
               </span>
               <span>{answer}</span>
             </DialogContentText>
@@ -119,8 +119,8 @@ export default function ModalWindowQuestion({
                 {isCorrect === 'correct'
                   ? 'Correct!'
                   : isCorrect === 'incorrect'
-                  ? 'Failed'
-                  : null}
+                    ? 'Failed'
+                    : null}
               </span>
               <span>{text}</span>
             </DialogContentText>
@@ -137,7 +137,7 @@ export default function ModalWindowQuestion({
               fullWidth
               value={input}
               variant="standard"
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => { setInput(e.target.value); }}
             />
           )}
         </DialogContent>
