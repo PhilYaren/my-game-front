@@ -26,7 +26,7 @@ export default function ModalWindowQuestion ({
   score
 }) {
   const [input, setInput] = useState('');
-  const [count, setCount] = useState(8);
+  const [count, setCount] = useState(100);
   const [isAnswered, setAnswer] = useState(false);
   const [isCorrect, setCheck] = useState('none');
   const gameId = useLocation().pathname.split('/').at(-1);
@@ -89,7 +89,7 @@ export default function ModalWindowQuestion ({
           console.log('useEffect timer');
           handleClose();
         }
-      }, 1000);
+      }, 100);
     }
     return () => {
       clearInterval(counter);
@@ -114,7 +114,7 @@ export default function ModalWindowQuestion ({
             </DialogContentText>
           ) : (
             <DialogContentText>
-              <span>{count}</span>
+              <progress id='timerProgressBar' max={100} value={count} />
               <span>
                 {isCorrect === 'correct'
                   ? 'Correct!'
