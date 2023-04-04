@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SingleLeaderboardComponent from "../SingleGameLeaderboardComponent/SingleLeaderboardComponent";
+import './lider.css';
 
 export default function LeaderboardPage(): JSX.Element {
   const [leaderboardArr, setLeaderboard] = useState([]);
@@ -20,6 +21,7 @@ export default function LeaderboardPage(): JSX.Element {
 }, []);
 
 return (
+  <div id="divLider">
     <div>
       <h2>LeaderboardPage</h2>
       {leaderboardArr.map((singleGameset) => (
@@ -29,5 +31,6 @@ return (
         />
       ))}
     </div>
+  </div>
   );
 }
