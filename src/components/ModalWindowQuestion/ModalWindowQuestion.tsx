@@ -103,13 +103,11 @@ export default function ModalWindowQuestion ({
         <DialogContent>
           {isAnswered ? (
             <DialogContentText>
-              <span>
                 {isCorrect === 'correct'
-                  ? 'Correct!'
+                  ? <span style={{color: 'green'}}>Correct!</span>
                   : isCorrect === 'incorrect'
-                    ? 'Failed'
+                    ? <span style={{color: 'red'}}>Faled!</span>
                     : null}
-              </span>
               <span>{answer}</span>
             </DialogContentText>
           ) : (
