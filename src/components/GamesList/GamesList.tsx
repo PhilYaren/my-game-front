@@ -1,6 +1,6 @@
 import React from 'react';
 import GameCard from '../GameCard/GameCard';
-import styles from './GamesList.module.css';
+import './list.css';
 
 function GamesList({ games }: any): JSX.Element {
   if (!games.length) {
@@ -8,7 +8,7 @@ function GamesList({ games }: any): JSX.Element {
   }
 
   return (
-    <div className={styles.game__section}>
+    <div className='game__section'>
       {games.map((game) => (
         <GameCard key={game.id} game={game}></GameCard>
       ))}
