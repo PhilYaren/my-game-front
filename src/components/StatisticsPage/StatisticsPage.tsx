@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { getUser } from "../../redux/user/user.selector";
 import SingleStatisticsComponent from "../SingleStatisticsComponent/SingleStatisticsComponent";
+import './statistic.css'
 
 export default function StatisticsPage(): JSX.Element {
   const user = useSelector(getUser);
@@ -32,7 +33,8 @@ export default function StatisticsPage(): JSX.Element {
     },
   ];
   return (
-    <div>
+    <div id="divStat">
+      <div>
       <h2>{user.userName}</h2>
       <ul>
         {userStatisticsArr.map((singleStat) => (
@@ -44,6 +46,7 @@ export default function StatisticsPage(): JSX.Element {
           />
         ))}
       </ul>
+      </div>
     </div>
   );
 }

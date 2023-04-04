@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authUser } from "../../redux/user/user.action";
 import {loadConfigFromFile} from "vite";
+import './form.css'
 
 export default function LogInForm (): JSX.Element {
 
@@ -42,7 +43,7 @@ export default function LogInForm (): JSX.Element {
         <label htmlFor="exampleInputEmail1" className="form-label">
           Имя пользователя
         </label>
-        <input type="text" className="form-control" id="exampleInputEmail1" value={form.userName} name="userName" onChange={handleInput} />
+        <input type="text" className="form-control" id="exampleInputEmail1" value={form.userName} name="userName" onChange={handleInput} required/>
       </div>
       <div className="mb-3">
         <label htmlFor="exampleInputPassword1" className="form-label">
@@ -55,6 +56,7 @@ export default function LogInForm (): JSX.Element {
           value={form.password}
           name="password"
           onChange={handleInput}
+          required
         />
       </div>
       <div id="signUpHelp" className="form-text">

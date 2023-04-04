@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './GameCard.module.css';
+import './GameCard.css'
 
 function GameCard({ game }: any): JSX.Element {
   const navigate = useNavigate();
@@ -11,10 +11,10 @@ function GameCard({ game }: any): JSX.Element {
   };
 
   return (
-    <div>
+    <div id="gameCard">
       <h3>{name}</h3>
       {answeredQuestions.length ? (
-        <button onClick={handleClick}>Продолжить игру</button>
+        <button onClick={handleClick}>Продолжить</button>
       ) : (
         <button onClick={handleClick}>Начать игру</button>
       )}

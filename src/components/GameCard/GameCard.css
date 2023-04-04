@@ -1,0 +1,36 @@
+#gameCard h3 {
+    align-items: center;
+    color: rgb(235,215,56);
+    font-family: monospace;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#gameCard {
+    text-align: center;
+    background: rgb(28,61,131);
+    box-shadow: inset 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+    border: none;
+    font-size: 25px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+#gameCard button {
+    width: 120px;
+    margin-bottom: 5px;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+    background-color: rgb(140,179,266);
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+    color: rgb(235,215,56);
+    transition: 0.5s;
+}
+
+#gameCard button:hover {
+    background-color: rgb(28,61,131);
+}
