@@ -55,7 +55,7 @@ export default function NavBar(): JSX.Element {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="https://elbrusboot.camp/" target="_blank">
           <img src="../../../public/img/svoay_igra-PhotoRoom.png-PhotoRoom.png" alt=""/>
         </a>
         <button
