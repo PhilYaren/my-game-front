@@ -79,11 +79,8 @@ export default function ModalWindowQuestion ({
   };
 
   useEffect(() => {
-    // let timer;
     let counter;
     if (timeToAnswer) {
-      // timer = setTimeout(() => {
-      // }, 8000);
       counter = setInterval(() => {
         if (count > 0) {
           setCount((prev) => prev - 1);
@@ -95,7 +92,6 @@ export default function ModalWindowQuestion ({
       }, 1000);
     }
     return () => {
-      // clearTimeout(timer);
       clearInterval(counter);
     };
   }, [timeToAnswer, count]);
