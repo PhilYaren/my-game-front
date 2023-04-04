@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -18,12 +19,28 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({ score, setOpen, open }) {
+export default function AlertDialogSlide({ score, setOpen, open, gameId }) {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    navigate('/home');
-    setOpen(false);
+    async function generateStatistics() {
+      const id = Number(gameId);
+      const response = await fetch(`http://localhost:3000/api/statistics/`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ gameId: id }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        navigate('/home');
+        setOpen(false);
+      }
+    }
+    generateStatistics();
   };
 
   return (

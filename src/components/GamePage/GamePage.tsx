@@ -4,7 +4,7 @@ import AlertDialogSlide from '../ModalWindowGameEnd/ModalWindowGameEnd';
 import { getUser } from '../../redux/user/user.selector';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import './gamePage.css'
+import './gamePage.css';
 
 export default function GamePage(): JSX.Element {
   const user: any = useSelector(getUser);
@@ -43,7 +43,12 @@ export default function GamePage(): JSX.Element {
       <button type="button" onClick={handleClickOpen}>
         <span>Завершить игру</span>
       </button>
-      <AlertDialogSlide score={score} setOpen={setOpen} open={open} />
+      <AlertDialogSlide
+        score={score}
+        setOpen={setOpen}
+        open={open}
+        gameId={gameId}
+      />
     </div>
   );
 }
